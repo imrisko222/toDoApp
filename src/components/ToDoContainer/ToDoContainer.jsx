@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import InputComponent from "../InputComponent/AddTask";
+import AddTask from "../InputComponent/AddTask";
 
 const ToDoContainer = () => {
-  const [tastData, setTaskData] = useState();
+  const [taskData, setTaskData] = useState();
 
-  return <InputComponent data={tastData} />;
+  return <AddTask data={taskData} />;
 };
 
 export default ToDoContainer;
