@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./AddTask.module.css";
 
 const AddTask = () => {
-  const [taskText, setTaskText] = useState(""); //aktualne napis task
+  const [taskInput, setTaskInput] = useState({
+    text: "",
+    body: "",
+  });
   const [tasks, setTasks] = useState([]); // vsetky ulozene tasky
+
+  useEffect(() => {
+    if (tasks) return console.log(tasks);
+  }, [tasks]);
 
   const submitHandler = (event) => {
     event.preventDefault(); //zabran prednastavene spravanie
 
-    if (!taskText.trim()) return; // ignoruj prazdny task
+    // metoda .trim() odstranuje medzeri z oboch stran stringu
+    if (!taskInput.text.trim()) return; // ignoruj prazdny task
 
     // Vytvorenie novej úlohy s unikátnym ID a čistým textom
     const newTask = {
       id: Date.now(),
-      text: taskText.trim(),
+      text: taskInput.text.trim(),
+      body: taskInput.body.trim(),
     };
 
     // Pridanie novej úlohy do zoznamu existujúcich taskov
@@ -22,28 +31,33 @@ const AddTask = () => {
       return updated;
     });
 
-    setTaskText("");
-    console.log(tasks);
+    setTaskInput({ text: "", body: "" });
+    console.log("toto nie je log z useEffectu:", tasks);
   };
 
   //funk, kt aktualizuje stav pri pisani inputu
   const handleChange = (event) => {
-    setTaskText(event.target.value);
+    // event.target označuje input, ktorý spustil udalosť (napr. ten, do ktorého užívateľ práve píše)
+    const { name, value } = event.target;
+    setTaskInput((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
     <form onSubmit={submitHandler} className={style.formContainer}>
       <input
         type="text"
-        name="task"
-        value={taskText}
+        name="text"
+        value={taskInput.text}
         placeholder="Title..."
         onChange={handleChange}
       />
       <input
         type="text"
-        name="taskBody"
-        // value={formData.taskBody} TOTO BUDE TREBA DOROBIT TENTO RIADOK
+        name="body"
+        value={taskInput.body}
         placeholder="About..."
         onChange={handleChange}
       />
