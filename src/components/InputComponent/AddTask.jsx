@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import style from "./AddTask.module.css";
 
-const AddTask = () => {
+const AddTask = ({ onAddTask }) => {
   const [taskInput, setTaskInput] = useState({
     text: "",
     body: "",
   });
-  const [tasks, setTasks] = useState([]); // vsetky ulozene tasky
-
-  useEffect(() => {
-    if (tasks) return console.log(tasks);
-  }, [tasks]);
 
   const submitHandler = (event) => {
     event.preventDefault(); //zabran prednastavene spravanie
@@ -26,13 +21,9 @@ const AddTask = () => {
     };
 
     // Pridanie novej úlohy do zoznamu existujúcich taskov
-    setTasks((prevTasks) => {
-      const updated = [...prevTasks, newTask];
-      return updated;
-    });
+    onAddTask((prevTasks) => [...prevTasks, newTask]);
 
     setTaskInput({ text: "", body: "" });
-    console.log("toto nie je log z useEffectu:", tasks);
   };
 
   //funk, kt aktualizuje stav pri pisani inputu

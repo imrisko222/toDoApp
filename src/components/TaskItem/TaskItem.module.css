@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.taskContainer {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #a35709;
+  border-radius: 7px;
+  background-color: #242320;
+  font-family: "Roboto", "arial", "sans-serif";
+  /* text-align: left; */
+  color: #f0e3ca;
+  padding: 18px;
+}
+
+.taskContainer p:nth-child(1) {
+  font-size: 15px;
+}
+
+.taskContainer p:nth-child(2) {
+  font-size: 10px;
+}
+
+.taskContainer > button {
+  background-color: #1b1a17;
+  border: 1px solid #a35709;
+  border-radius: 7px;
+  color: #ff8303;
+}
