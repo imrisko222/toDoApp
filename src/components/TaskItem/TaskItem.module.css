@@ -14,7 +14,8 @@
   font-family: "Roboto", "arial", "sans-serif";
   /* text-align: left; */
   color: #f0e3ca;
-  padding: 18px;
+  padding: 0;
+  height: auto;
 }
 
 .taskContainer p:nth-child(1) {
@@ -30,4 +31,5 @@
   border: 1px solid #a35709;
   border-radius: 7px;
   color: #ff8303;
+  padding: 0;
 }

@@ -21,9 +21,18 @@
   grid-row: 1;
 }
 
-.formContainer input:nth-child(2) {
+/* .formContainer input:nth-child(2) { */
+.formContainer textarea {
+  background-color: #1b1a17;
+  color: #d9d9d9;
+  border-radius: 9px;
+  border: 1px solid #ff8303;
+  padding: 5px;
+  resize: none;
+  overflow: hidden;
   grid-column: 1;
   grid-row: 2;
+  /* height: auto; */
 }
 
 .formContainer > input:focus {

@@ -11,7 +11,7 @@ const TaskItem = ({ onRenderTask }) => {
                 <p>{task.text}</p>
                 <p>{task.body}</p>
               </div>
-              <button>X</button>
+              {/* <button>X</button> */}
             </div>
           ))
         : null}

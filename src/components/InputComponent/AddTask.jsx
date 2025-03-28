@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import style from "./AddTask.module.css";
 
 const AddTask = ({ onAddTask }) => {
@@ -7,6 +7,15 @@ const AddTask = ({ onAddTask }) => {
     body: "",
   });
 
+  const textareaRef = useRef(null);
+
+  const autoSize = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
+    }
+  };
   const submitHandler = (event) => {
     event.preventDefault(); //zabran prednastavene spravanie
 
@@ -24,6 +33,9 @@ const AddTask = ({ onAddTask }) => {
     onAddTask((prevTasks) => [...prevTasks, newTask]);
 
     setTaskInput({ text: "", body: "" });
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
   };
 
   //funk, kt aktualizuje stav pri pisani inputu
@@ -34,6 +46,7 @@ const AddTask = ({ onAddTask }) => {
       ...prev,
       [name]: value,
     }));
+    if (name === "body") autoSize();
   };
 
   return (
@@ -45,12 +58,21 @@ const AddTask = ({ onAddTask }) => {
         placeholder="Title..."
         onChange={handleChange}
       />
-      <input
+      {/* <input
         type="text"
         name="body"
         value={taskInput.body}
         placeholder="About..."
         onChange={handleChange}
+      /> */}
+      <textarea
+        name="body"
+        value={taskInput.body}
+        placeholder="About..."
+        onChange={handleChange}
+        className={style.textareaAuto}
+        rows="1"
+        ref={textareaRef}
       />
       <button type="submit" className={style.addButton}>
         +
