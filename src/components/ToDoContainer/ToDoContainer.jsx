@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import AddTask from "../InputComponent/AddTask";
-import TaskItem from "../TaskItem/TaskItem";
+import TaskList from "../TaskList/TaskList";
 
 const ToDoContainer = () => {
   const [taskData, setTaskData] = useState([]);
 
-  console.log(taskData);
+  console.log("tu su data z ToDoContainer", taskData);
 
   return (
     <>
       <AddTask onAddTask={setTaskData} />
-      <TaskItem onRenderTask={taskData} />
+      <TaskList tasks={taskData} updateTasks={setTaskData} />
     </>
   );
 };

@@ -37,3 +37,18 @@ console.log("toto je log z useEffectu:", tasks);
 });
 
 - ak vynecham uplne dep. arr. tak sa useEff. spusti pri kazdom vygenerovani komponenty
+
+## filter()
+
+          - vracia pole vseetkych, ktore vyhovuju podmienke, ktora je pouzita vramci .filter()
+          let users = [
+
+        {id: 1, name: "John"},
+        {id: 2, name: "Pete"},
+        {id: 3, name: "Mary"}
+        ];
+
+        // returns array of the first two users
+        let someUsers = users.filter(item => item.id < 3);
+
+        alert(someUsers.length); // 2

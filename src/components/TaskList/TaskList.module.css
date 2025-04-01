@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: 16px;
   margin-top: 30px;
+  /* zmazat, ked nebude treba */
+  border: 1px solid white;
+  padding: 3px;
 }
 
 .taskContainer {
@@ -12,24 +15,29 @@
   border-radius: 7px;
   background-color: #242320;
   font-family: "Roboto", "arial", "sans-serif";
-  /* text-align: left; */
   color: #f0e3ca;
-  padding: 0;
-  height: auto;
 }
 
 .taskContainer p:nth-child(1) {
   font-size: 15px;
+  text-align: left;
 }
 
 .taskContainer p:nth-child(2) {
   font-size: 10px;
+  text-align: left;
+}
+
+.taskText {
+  margin-left: 10px;
 }
 
 .taskContainer > button {
   background-color: #1b1a17;
   border: 1px solid #a35709;
-  border-radius: 7px;
+  border-radius: 4px;
   color: #ff8303;
-  padding: 0;
+  margin-right: 7px;
+  align-self: center;
+  text-align: center;
 }
