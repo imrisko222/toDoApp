@@ -4,7 +4,9 @@ import styles from "./NoTasks.module.css";
 const NoTasks = () => {
   return (
     <div className={styles.container}>
-      <p>skuska skusok</p>
+      <div></div> {/* vrchna ciara */}
+      <p>No tasks</p>
+      <div></div> {/* spodna ciara */}
     </div>
   );
 };

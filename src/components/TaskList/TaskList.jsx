@@ -1,5 +1,6 @@
 import React from "react";
 import NoTasks from "../NoTasks/NoTasks";
+import EditButtons from "../EditButtons/EditButtons";
 import styles from "./TaskList.module.css";
 
 const TaskList = ({ tasks, updateTasks }) => {
@@ -11,7 +12,7 @@ const TaskList = ({ tasks, updateTasks }) => {
 
   return (
     <div className={styles.container}>
-      {tasks.lenght > 0 ? (
+      {tasks.length > 0 ? (
         tasks.map((task) => (
           <div key={task.id} className={styles.taskContainer}>
             <div className={styles.taskText}>
