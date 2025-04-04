@@ -7,6 +7,7 @@ import styles from "./TaskList.module.css";
 const TaskList = ({ tasks, updateTasks }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  const [showButtons, setShowButtons] = useState(true);
 
   // potvrdenie vymazania tasku, odstrani ho zo zoznamu
   const confirmDelete = () => {
@@ -17,7 +18,8 @@ const TaskList = ({ tasks, updateTasks }) => {
   };
 
   // nastavi ID tasku, ktory sa ma zmazat a zobrazi potvrdovacie okno
-  const handleDeleteClick = (id) => {
+  const handleDeleteClick = (id, event) => {
+    event.stopPropagation();
     setTaskToDelete(id);
     setShowConfirm(true);
   };
@@ -33,12 +35,17 @@ const TaskList = ({ tasks, updateTasks }) => {
       {tasks.length > 0 ? (
         <>
           {tasks.map((task) => (
-            <div key={task.id} className={styles.taskContainer}>
-              <div className={styles.taskText}>
-                <p>{task.text}</p>
-                <p>{task.body}</p>
+            <div key={task.id} onClick={() => setShowButtons(!showButtons)}>
+              <div className={styles.taskContainer}>
+                <div className={styles.taskText}>
+                  <p>{task.text}</p>
+                  <p>{task.body}</p>
+                </div>
+                <button onClick={(event) => handleDeleteClick(task.id, event)}>
+                  x
+                </button>
               </div>
-              <button onClick={() => handleDeleteClick(task.id)}>x</button>
+              {showButtons && <EditButtons />}
             </div>
           ))}
           {showConfirm && (

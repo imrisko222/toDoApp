@@ -52,3 +52,11 @@ console.log("toto je log z useEffectu:", tasks);
         let someUsers = users.filter(item => item.id < 3);
 
         alert(someUsers.length); // 2
+
+4.4.2025 (odkaz do najblizsieho programovanie)
+
+- treba zabezpecit
+  1. aby po pridani tasku sa komponenta s inputmi neposuvala vyssie
+  2. aby sa nehybali tasky smerom hore, pri zobrazovani edit buttons. mozu sa len dole.
+  3. ked sa klikne na nejaky task, tak sa momentalne zobrazia buttons pri vsetkych taskoch. treba teda zabezpecit, aby sa zobrazovali len pri tom tasku, na ktory sa kliklo
+  4. skusit vymysliet nejaku animaciu, ked sa tasky budu posuvat, aby to nebolo sekane.
