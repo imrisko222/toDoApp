@@ -16,6 +16,7 @@
   background-color: #242320;
   font-family: "Roboto", "arial", "sans-serif";
   color: #f0e3ca;
+  cursor: pointer;
 }
 
 .taskContainer p:nth-child(1) {

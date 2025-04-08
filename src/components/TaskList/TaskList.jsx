@@ -7,7 +7,8 @@ import styles from "./TaskList.module.css";
 const TaskList = ({ tasks, updateTasks }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-  const [showButtons, setShowButtons] = useState(true);
+  // const [showButtons, setShowButtons] = useState(true);
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
 
   // potvrdenie vymazania tasku, odstrani ho zo zoznamu
   const confirmDelete = () => {
@@ -35,7 +36,12 @@ const TaskList = ({ tasks, updateTasks }) => {
       {tasks.length > 0 ? (
         <>
           {tasks.map((task) => (
-            <div key={task.id} onClick={() => setShowButtons(!showButtons)}>
+            <div
+              key={task.id}
+              onClick={() =>
+                setSelectedTaskId(selectedTaskId === task.id ? null : task.id)
+              }
+            >
               <div className={styles.taskContainer}>
                 <div className={styles.taskText}>
                   <p>{task.text}</p>
@@ -45,7 +51,7 @@ const TaskList = ({ tasks, updateTasks }) => {
                   x
                 </button>
               </div>
-              {showButtons && <EditButtons />}
+              {selectedTaskId === task.id && <EditButtons />}
             </div>
           ))}
           {showConfirm && (
