@@ -5,17 +5,17 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import styles from "./EditButtons.module.css";
 
-const EditButtons = () => {
+const EditButtons = ({ onEdit }) => {
   return (
     <div className={styles.container}>
-      <button>
+      <button onClick={onEdit}>
         <IoShareSocialSharp />
       </button>
-      <button>
+      <button onClick={onEdit}>
         {/* <IoIosInformation /> */}
         <IoMdInformationCircleOutline />
       </button>
-      <button>
+      <button onClick={onEdit}>
         <MdEdit />
       </button>
     </div>

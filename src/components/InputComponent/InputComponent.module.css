@@ -1,0 +1,9 @@
+.formContainer > input {
+  background-color: #1b1a17;
+  color: #d9d9d9;
+  font-family: "Roboto", "arial", "sans-serif";
+}
+
+.formContainer > input:focus {
+  color: #f0e3ca;
+}

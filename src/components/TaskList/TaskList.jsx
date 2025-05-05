@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import NoTasks from "../NoTasks/NoTasks";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
 import EditButtons from "../EditButtons/EditButtons";
+import EditTaskComponent from "../EditTaskComponent/EditTaskComponent";
 import styles from "./TaskList.module.css";
 
 const TaskList = ({ tasks, updateTasks }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   // const [showButtons, setShowButtons] = useState(true);
-  const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [selectedTaskId, setSelectedTaskId] = useState([]);
+  const [showEdit, setShowEdit] = useState(false);
 
   // potvrdenie vymazania tasku, odstrani ho zo zoznamu
   const confirmDelete = () => {
@@ -31,17 +33,31 @@ const TaskList = ({ tasks, updateTasks }) => {
     setShowConfirm(false);
   };
 
+  // Prepína zobrazenie EditButtons pre daný task.
+  // Ak už je task vybraný, odstráni ho zo zoznamu, inak ho pridá.
+  const handleTaskClick = (taskId) => {
+    setSelectedTaskId((prevId) => {
+      // ak uz je v zozname, tak ho odstrani
+      if (prevId.includes(taskId)) {
+        return prevId.filter((id) => id !== taskId);
+      } else {
+        // inak ho prida
+        return [...prevId, taskId];
+      }
+    });
+  };
+
+  const handleEdit = (event, id) => {
+    event.stopPropagation();
+    console.log("kliknute");
+  };
+
   return (
     <div className={styles.container}>
       {tasks.length > 0 ? (
         <>
           {tasks.map((task) => (
-            <div
-              key={task.id}
-              onClick={() =>
-                setSelectedTaskId(selectedTaskId === task.id ? null : task.id)
-              }
-            >
+            <div key={task.id} onClick={() => handleTaskClick(task.id)}>
               <div className={styles.taskContainer}>
                 <div className={styles.taskText}>
                   <p>{task.text}</p>
@@ -51,12 +67,15 @@ const TaskList = ({ tasks, updateTasks }) => {
                   x
                 </button>
               </div>
-              {selectedTaskId === task.id && <EditButtons />}
+              {selectedTaskId.includes(task.id) && (
+                <EditButtons onEdit={handleEdit} />
+              )}
             </div>
           ))}
           {showConfirm && (
             <DeleteConfirm onConfirm={confirmDelete} onCancel={cancelDelete} />
           )}
+          {/* {showEdit && <EditTaskComponent />} */}
         </>
       ) : (
         <NoTasks />

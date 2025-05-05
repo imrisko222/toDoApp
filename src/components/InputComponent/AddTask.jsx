@@ -9,6 +9,7 @@ const AddTask = ({ onAddTask }) => {
 
   const textareaRef = useRef(null);
 
+  // funk. na dynamicke prisposobovanie okna podla obsahu
   const autoSize = () => {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -58,13 +59,7 @@ const AddTask = ({ onAddTask }) => {
         placeholder="Title..."
         onChange={handleChange}
       />
-      {/* <input
-        type="text"
-        name="body"
-        value={taskInput.body}
-        placeholder="About..."
-        onChange={handleChange}
-      /> */}
+
       <textarea
         name="body"
         value={taskInput.body}
