@@ -53,7 +53,12 @@ console.log("toto je log z useEffectu:", tasks);
 
         alert(someUsers.length); // 2
 
-4.4.2025 (odkaz do najblizsieho programovanie)
+## formik
+
+- formik vie pracovat aj s vnorenymi inputmi, buttonomi ci dalsimi elementami. dolezite je, aby boli pod form elementom a tento form element napojeny <form onSubmit={formik.handleSubmit}>
+- ak chcem, aby input obsahoval nejaku prednastavenu value a zaroven chcem zabezpecit, aby tuto hodnotu bolo mozne menit, je nutne nezabudnut zabezpecit, aby sucasatou inputu bol aj onChange={formik.handleChange}.
+
+  4.4.2025 (odkaz do najblizsieho programovanie)
 
 - treba zabezpecit
   1. aby po pridani tasku sa komponenta s inputmi neposuvala vyssie

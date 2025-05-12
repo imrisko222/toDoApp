@@ -11,6 +11,9 @@ const TaskList = ({ tasks, updateTasks }) => {
   // const [showButtons, setShowButtons] = useState(true);
   const [selectedTaskId, setSelectedTaskId] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
+  const [taskToEditId, setTaskToEditId] = useState(null);
+
+  const stopPropagation = (event) => event.stopPropagation();
 
   // potvrdenie vymazania tasku, odstrani ho zo zoznamu
   const confirmDelete = () => {
@@ -22,7 +25,7 @@ const TaskList = ({ tasks, updateTasks }) => {
 
   // nastavi ID tasku, ktory sa ma zmazat a zobrazi potvrdovacie okno
   const handleDeleteClick = (id, event) => {
-    event.stopPropagation();
+    stopPropagation(event);
     setTaskToDelete(id);
     setShowConfirm(true);
   };
@@ -48,8 +51,20 @@ const TaskList = ({ tasks, updateTasks }) => {
   };
 
   const handleEdit = (event, id) => {
-    event.stopPropagation();
+    stopPropagation(event);
+    setShowEdit((prevState) => !prevState);
+    setTaskToEditId(id);
     console.log("kliknute");
+  };
+
+  const handleUpdateTask = (id, updatedValues) => {
+    updateTasks((prev) =>
+      prev.map((task) =>
+        task.id === id
+          ? { ...task, text: updatedValues.title, body: updatedValues.taskText }
+          : task
+      )
+    );
   };
 
   return (
@@ -68,14 +83,20 @@ const TaskList = ({ tasks, updateTasks }) => {
                 </button>
               </div>
               {selectedTaskId.includes(task.id) && (
-                <EditButtons onEdit={handleEdit} />
+                <EditButtons onEdit={(event) => handleEdit(event, task.id)} />
               )}
             </div>
           ))}
           {showConfirm && (
             <DeleteConfirm onConfirm={confirmDelete} onCancel={cancelDelete} />
           )}
-          {/* {showEdit && <EditTaskComponent />} */}
+          {showEdit && (
+            <EditTaskComponent
+              task={tasks.find((task) => task.id === taskToEditId)}
+              updateTask={handleUpdateTask}
+              setShowEdit={setShowEdit}
+            />
+          )}
         </>
       ) : (
         <NoTasks />

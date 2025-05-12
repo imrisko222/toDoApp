@@ -1,0 +1,29 @@
+.container {
+  border: 1px white solid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  display: flex;
+  gap: 3px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vh;
+  height: 100vh;
+}
+
+.container input,
+textarea {
+  border: 1px solid #a35709;
+  border-radius: 3px;
+  color: #f0e3ca;
+  background-color: #242320;
+}
+
+.container textarea {
+  min-height: 30px;
+  resize: none;
+  padding: 3px;
+}
